@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harshan | ECE Undergraduate Portfolio</title>
+<meta name="description" content="Portfolio of Harshan, B.E. Electronics and Communication Engineering student at M. Kumarasamy College of Engineering, Karur. Projects in analog electronics and Flask web development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2a3045; --navy-deep:#1b2033; --ink:#0f1a3a; --gold:#a8863f; --gold-soft:#c9a85c;
+  --paper:#ffffff; --bg:#e9e8e6; --text:#2b2f3a; --muted:#6a6f7c; --line:#e3ddd0;
+  --side-w:340px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:16px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.2}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.page{display:grid;grid-template-columns:var(--side-w) 1fr;max-width:1240px;margin:32px auto;background:var(--paper);box-shadow:0 20px 60px rgba(20,25,45,.18);min-height:100vh}
+
+/* Sidebar */
+.side{background:var(--navy);color:#eceef4;padding:48px 32px;position:relative}
+.side-inner{position:sticky;top:32px}
+.photo{width:190px;height:190px;border-radius:50%;margin:0 auto 36px;border:4px solid var(--gold);padding:5px;background:var(--navy);box-shadow:0 0 0 6px rgba(168,134,63,.15)}
+.photo img,.photo .ph{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.photo .ph{display:none;align-items:center;justify-content:center;background:linear-gradient(135deg,#3a4262,#1b2033);font-family:'Playfair Display',serif;font-size:3.4rem;color:var(--gold-soft)}
+.side h2{font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-bottom:8px;border-bottom:1px solid var(--gold);margin:30px 0 14px;font-weight:600}
+.side dt{font-weight:600;font-size:.9rem;margin-top:12px;color:#fff}
+.side dd{font-size:.9rem;color:#c9cedc;word-break:break-word}
+.side dd a{text-decoration:none}.side dd a:hover{color:var(--gold-soft)}
+.side ul{list-style:none}
+.side li{font-size:.9rem;color:#d4d8e4;padding:3px 0 3px 18px;position:relative}
+.side li::before{content:"";position:absolute;left:0;top:.8em;width:6px;height:6px;background:var(--gold)}
+.side .edu b{display:block;color:#fff;font-size:.9rem}
+.side .edu span{font-size:.85rem;color:#c9cedc;display:block}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{border:1px solid var(--gold);color:var(--gold-soft);padding:3px 14px;border-radius:99px;font-size:.85rem}
+
+/* Main */
+.main{padding:0 56px 40px;min-width:0}
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.logo{font-family:'Playfair Display',serif;font-weight:800;letter-spacing:.12em;color:var(--ink);text-decoration:none}
+.nav ul{display:flex;gap:22px;list-style:none;align-items:center}
+.nav a.link{text-decoration:none;font-size:.88rem;font-weight:500;color:var(--text);position:relative;padding:4px 0}
+.nav a.link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);transition:width .25s}
+.nav a.link:hover::after{width:100%}
+.btn{display:inline-block;background:var(--navy);color:#fff;border:2px solid var(--navy);padding:10px 22px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;font-family:inherit;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold)}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn.ghost:hover{color:#fff}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
+
+.hero{padding:64px 0 48px}
+.eyebrow{color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.18em}
+h1{font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:.02em;margin:10px 0 6px;font-weight:800}
+.role{font-family:'Playfair Display',serif;color:var(--gold);font-weight:700;font-size:1.25rem;margin-bottom:18px}
+.hero p{max-width:620px;color:var(--muted)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+section{padding:44px 0 8px}
+.sec-title{font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;padding-bottom:8px;border-bottom:2px solid var(--gold);margin-bottom:22px;font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.card{border:1px solid var(--line);border-radius:12px;padding:20px;background:#fff;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,25,45,.1);border-color:var(--gold-soft)}
+.card h3{font-size:1rem;margin:8px 0 4px}
+.card p{font-size:.88rem;color:var(--muted)}
+.ico{width:34px;height:34px;color:var(--gold)}
+
+.timeline{border-left:2px solid var(--gold);margin-left:8px}
+.t-item{position:relative;padding:0 0 26px 28px}
+.t-item::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--gold)}
+.t-item h3{font-size:1.05rem}
+.meta{font-style:italic;color:var(--muted);font-size:.9rem}
+
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{background:#f4f1ea;border:1px solid var(--line);padding:4px 12px;border-radius:99px;font-size:.82rem}
+
+.project{margin-bottom:24px;overflow:hidden;padding:0}
+.p-visual{height:190px;background:linear-gradient(135deg,#223020,#3b6a3a);display:flex;align-items:center;justify-content:center}
+.p-visual.analog{background:linear-gradient(135deg,#141a30,#27324f)}
+.p-visual svg{width:100%;height:100%}
+.p-body{padding:24px}
+.p-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.p-head h3{font-size:1.3rem}
+.cat{color:var(--gold);font-size:.82rem;font-weight:600}
+.p-body ul{margin:12px 0 16px 20px;font-size:.92rem}
+.p-body li::marker{color:var(--gold)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn.sm{padding:8px 16px;font-size:.82rem}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cert .tag{font-size:.75rem;color:var(--gold);font-weight:600;letter-spacing:.06em}
+
+form{display:grid;gap:14px;margin-top:24px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-size:.82rem;font-weight:600;display:block;margin-bottom:4px}
+input,textarea{width:100%;padding:11px 14px;border:1px solid #cfc8b8;border-radius:8px;font:inherit;background:#fff}
+input:focus,textarea:focus{border-color:var(--gold);outline:2px solid rgba(168,134,63,.3)}
+.err{color:#b3261e;font-size:.78rem;min-height:1em}
+#status{font-size:.9rem;font-weight:500}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--muted)}
+footer nav{display:flex;gap:14px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--gold)}
+.top{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;border:2px solid var(--gold);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+.top.show{opacity:1;pointer-events:auto}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(15,20,40,.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.open{display:flex}
+.m-box{background:#fff;max-width:720px;width:100%;max-height:88vh;overflow:auto;border-radius:14px;padding:32px;border-top:5px solid var(--gold)}
+.m-box h3{font-size:1.5rem;margin-bottom:4px}
+.m-box h4{margin:18px 0 6px;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.m-box ul{margin-left:20px;font-size:.92rem}
+.m-box .todo{color:var(--muted);font-style:italic;font-size:.9rem}
+.m-close{float:right;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+@media (max-width:980px){
+  .page{grid-template-columns:1fr;margin:0}
+  .side{padding:36px 24px}
+  .side-inner{position:static;display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+  .side .photo,.side .full{grid-column:1/-1}
+  .main{padding:0 24px 32px}
+  .cards{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .burger{display:block}
+  .nav ul{display:none;position:absolute;top:100%;left:-24px;right:-24px;background:#fff;flex-direction:column;align-items:flex-start;padding:16px 24px;border-bottom:1px solid var(--line);gap:14px}
+  .nav ul.open{display:flex}
+  .nav{position:sticky}
+  .skill-grid,.two,.row{grid-template-columns:1fr}
+  .side-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="side" aria-label="Profile summary">
+  <div class="side-inner">
+    <div class="photo">
+      <!-- Put your portrait at assets/profile.jpg -->
+      <img src="assets/profile.jpg" alt="Portrait of Harshan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph" aria-hidden="true">H</div>
+    </div>
+
+    <div>
+      <h2>Contact Detail</h2>
+      <dl>
+        <dt>Phone:</dt><dd><a href="tel:+917904873383">7904873383</a></dd>
+        <dt>Email:</dt><dd><a href="mailto:harshanaranganathan@gmail.com">harshanaranganathan@gmail.com</a></dd>
+        <dt>Location:</dt><dd>Karur, Tamil Nadu, India</dd>
+      </dl>
+    </div>
+
+    <div>
+      <h2>Skills &amp; Expertise</h2>
+      <ul>
+        <li>Analog Electronics</li><li>IC 555 Timer</li><li>IC 741 Op-Amp</li>
+        <li>Circuit Design</li><li>Electronic Fault Detection</li>
+        <li>Python</li><li>HTML &amp; CSS</li><li>Flask</li>
+        <li>Web Application Development</li><li>Problem-Solving</li>
+        <li>Analytical Thinking</li><li>Teamwork</li>
+      </ul>
+    </div>
+
+    <div class="edu">
+      <h2>Education</h2>
+      <b>B.E. Electronics &amp; Communication Engineering</b>
+      <span>M. Kumarasamy College of Engineering, Karur</span>
+      <span>2025 – 2029</span>
+    </div>
+
+    <div>
+      <h2>Languages</h2>
+      <div class="badges"><span class="badge">Hindi</span><span class="badge">English</span></div>
+    </div>
+  </div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+  <header class="nav">
+    <a class="logo" href="#home">HARSHAN</a>
+    <button class="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <ul id="menu">
+      <li><a class="link" href="#home">Home</a></li>
+      <li><a class="link" href="#about">About</a></li>
+      <li><a class="link" href="#education">Education</a></li>
+      <li><a class="link" href="#skills">Skills</a></li>
+      <li><a class="link" href="#projects">Projects</a></li>
+      <li><a class="link" href="#certificates">Certificates</a></li>
+      <li><a class="link" href="#contact">Contact</a></li>
+      <li><a class="btn sm" href="#contact">Let's Connect</a></li>
+    </ul>
+  </header>
+
+  <section class="hero" id="home" style="padding-top:64px">
+    <p class="eyebrow">ECE UNDERGRADUATE | TECH ENTHUSIAST</p>
+    <h1>Hi, I'm Harshan.</h1>
+    <p class="role">Exploring Electronics, Software &amp; Intelligent Systems.</p>
+    <p>I build practical engineering projects that combine electronics, programming, and problem-solving to explore real-world challenges.</p>
+    <div class="cta">
+      <a class="btn" href="#projects">Explore My Projects</a>
+      <a class="btn ghost" href="#contact">Get In Touch</a>
+      <!-- Resume: uncomment once you add assets/resume.pdf
+      <a class="btn ghost" href="assets/resume.pdf" download>Download Resume</a> -->
+    </div>
+  </section>
+
+  <section id="about" class="reveal">
+    <h2 class="sec-title">A Little About Me</h2>
+    <p>I'm a motivated Electronics and Communication Engineering undergraduate with an interest in programming, electronics, circuit design, and emerging technologies. Through hands-on projects, I enjoy exploring technical concepts and transforming ideas into practical prototypes. I'm continuously developing my analytical thinking, technical skills, and problem-solving abilities while learning about software systems, intelligent applications, and automotive technology.</p>
+    <div class="cards">
+      <div class="card"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg><h3>Electronics &amp; Circuit Design</h3><p>Analog circuits and fault detection.</p></div>
+      <div class="card"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg><h3>Software &amp; Web Development</h3><p>Python, Flask, HTML and CSS.</p></div>
+      <div class="card"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0012 3z"/></svg><h3>Engineering Innovation</h3><p>Turning ideas into practical prototypes.</p></div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <h2 class="sec-title">Education</h2>
+    <div class="timeline">
+      <div class="t-item"><h3>B.E. Electronics and Communication Engineering</h3><p>M. Kumarasamy College of Engineering</p><p class="meta">Karur, Tamil Nadu | 2025 – 2029 | Undergraduate</p></div>
+      <div class="t-item"><h3>Higher Secondary Certificate (HSC)</h3><p>Cheran Matric Hr. Sec. School</p><p class="meta">2024 – 2025</p></div>
+      <div class="t-item"><h3>Secondary School Leaving Certificate (SSLC)</h3><p>Cheran Matric Hr. Sec. School</p><p class="meta">2022 – 2023</p></div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <h2 class="sec-title">Technical Skills</h2>
+    <div class="skill-grid">
+      <div class="card"><h3>Electronics &amp; Hardware</h3><div class="chips"><span class="chip">Analog Electronics</span><span class="chip">IC 555 Timer</span><span class="chip">IC 741 Op-Amp</span><span class="chip">Circuit Design</span><span class="chip">Electronic Fault Detection</span></div></div>
+      <div class="card"><h3>Programming &amp; Development</h3><div class="chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Flask</span><span class="chip">Web Application Development</span></div></div>
+      <div class="card"><h3>Engineering &amp; Problem-Solving</h3><div class="chips"><span class="chip">Analytical Thinking</span><span class="chip">Critical Thinking</span><span class="chip">Technical Curiosity</span><span class="chip">Problem-Solving</span></div></div>
+      <div class="card"><h3>Professional Skills</h3><div class="chips"><span class="chip">Communication</span><span class="chip">Teamwork</span><span class="chip">Time Management</span><span class="chip">Adaptability</span><span class="chip">Management</span><span class="chip">Negotiation</span></div></div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2 class="sec-title">Featured Projects</h2>
+
+    <article class="card project">
+      <div class="p-visual" role="img" aria-label="Illustration of a plant health dashboard with environmental indicators">
+        <svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice">
+          <rect x="20" y="20" width="360" height="150" rx="12" fill="#ffffff" opacity=".1"/>
+          <path d="M120 150v-50" stroke="#9be08f" stroke-width="5" stroke-linecap="round"/>
+          <path d="M120 110c-30 0-40-25-40-35 30 0 40 15 40 35zM120 95c25 0 38-20 38-32-28 0-38 12-38 32z" fill="#6fd16a"/>
+          <rect x="190" y="40" width="170" height="14" rx="7" fill="#fff" opacity=".25"/><rect x="190" y="40" width="110" height="14" rx="7" fill="#9be08f"/>
+          <rect x="190" y="70" width="170" height="14" rx="7" fill="#fff" opacity=".25"/><rect x="190" y="70" width="140" height="14" rx="7" fill="#7cc8ff"/>
+          <rect x="190" y="100" width="170" height="14" rx="7" fill="#fff" opacity=".25"/><rect x="190" y="100" width="90" height="14" rx="7" fill="#f2c96b"/>
+          <rect x="190" y="130" width="170" height="14" rx="7" fill="#fff" opacity=".25"/><rect x="190" y="130" width="125" height="14" rx="7" fill="#c7a6ff"/>
+        </svg>
+      </div>
+      <div class="p-body">
+        <div class="p-head"><h3>Project 01: AgroGuard AI</h3><span class="cat">2026 · AI-Inspired Agriculture / Web Development</span></div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Flask</span></div>
+        <p style="margin-top:12px">AgroGuard AI is a web-based plant health analysis application that uses environmental inputs and reported symptoms to support plant-health assessment.</p>
+        <ul>
+          <li>Collects plant name and environmental information: soil moisture, temperature, humidity and nutrient level.</li>
+          <li>Accepts reported plant symptoms for analysis.</li>
+          <li>Processes user inputs through a Python and Flask backend.</li>
+          <li>Presents plant-health assessments and crop-care recommendations.</li>
+          <li>Uses a responsive HTML and CSS interface.</li>
+        </ul>
+        <div class="btn-row">
+          <button class="btn sm" data-project="agro">View Project Details</button>
+          <!-- Add real URLs in href, then remove aria-disabled -->
+          <a class="btn ghost sm" id="agroLive" href="#" aria-disabled="true">View Project</a>
+          <a class="btn ghost sm" id="agroCode" href="#" aria-disabled="true">View Source Code</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card project">
+      <div class="p-visual analog" role="img" aria-label="Educational illustration of an analog circuit with an IC 555 timer, IC 741 op-amp and warning indicators">
+        <svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#5fd4ff" stroke-width="2">
+          <rect x="60" y="45" width="90" height="60" rx="6" fill="#0d1226"/><text x="105" y="80" fill="#5fd4ff" stroke="none" font-size="14" text-anchor="middle" font-family="monospace">IC 555</text>
+          <rect x="230" y="45" width="90" height="60" rx="6" fill="#0d1226"/><text x="275" y="80" fill="#5fd4ff" stroke="none" font-size="14" text-anchor="middle" font-family="monospace">IC 741</text>
+          <path d="M150 65h80M150 85h30v40h120v-20M30 65h30M30 85h30M320 65h40M105 105v35h-60M275 105v20"/>
+          <circle cx="360" cy="65" r="10" fill="#ff5d5d" stroke="none"/><circle cx="360" cy="65" r="18" stroke="#ff5d5d" opacity=".4"/>
+          <path d="M45 140h60" stroke-dasharray="4 4"/>
+          <text x="200" y="170" fill="#9fb3d9" stroke="none" font-size="11" text-anchor="middle" font-family="monospace">Conceptual diagram (illustrative)</text>
+        </svg>
+      </div>
+      <div class="p-body">
+        <div class="p-head"><h3>Project 02: Analog Damage Detection System</h3><span class="cat">2026 · Analog Electronics / Safety Engineering</span></div>
+        <div class="chips"><span class="chip">IC 555</span><span class="chip">IC 741</span><span class="chip">Analog Electronics</span></div>
+        <p style="margin-top:12px">An analog electronics project designed to detect wire damage and insulation faults, with the aim of identifying potential electrical hazards at an early stage.</p>
+        <ul>
+          <li>Designed an analog circuit concept for detecting wire damage and insulation faults.</li>
+          <li>Integrated visual and audible alerts for hazard indication.</li>
+          <li>Explored an affordable prototype approach for industrial safety applications.</li>
+          <li>Focused on analog circuit operation and practical fault detection.</li>
+        </ul>
+        <div class="btn-row">
+          <button class="btn sm" data-project="analog">View Project Details</button>
+          <a class="btn ghost sm" id="circuitLink" href="#" aria-disabled="true">View Circuit Diagram</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="certificates" class="reveal">
+    <h2 class="sec-title">Certifications &amp; Learning</h2>
+    <div class="cards">
+      <div class="card cert"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><h3>Machine Learning Foundations</h3><p>AWS Educate</p><p class="tag">TRAINING BADGE · FEB 2026</p><div class="btn-row"><a class="btn ghost sm cred" href="#" aria-disabled="true">View Credential</a></div></div>
+      <div class="card cert"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 18a4 4 0 01-.5-8A5.5 5.5 0 0117 8.5 4.8 4.8 0 0117 18H7z"/></svg><h3>Cloud Computing 101</h3><p>AWS Educate</p><p class="tag">TRAINING BADGE · FEB 2026</p><div class="btn-row"><a class="btn ghost sm cred" href="#" aria-disabled="true">View Credential</a></div></div>
+      <div class="card cert"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg><h3>Introduction to Generative AI</h3><p>AWS Educate</p><p class="tag">TRAINING BADGE · FEB 2026</p><div class="btn-row"><a class="btn ghost sm cred" href="#" aria-disabled="true">View Credential</a></div></div>
+    </div>
+  </section>
+
+  <section id="strengths" class="reveal">
+    <div class="two">
+      <div><h2 class="sec-title">Strengths</h2>
+        <div class="card"><h3>Analytical Thinking</h3><p>Breaking problems into clear, testable parts.</p></div><br>
+        <div class="card"><h3>Technical Curiosity</h3><p>Always learning how things work.</p></div></div>
+      <div><h2 class="sec-title">Interests</h2>
+        <div class="card"><h3>Software Testing &amp; Technology Exploration</h3></div><br>
+        <div class="card"><h3>Automotive Modeling</h3></div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2 class="sec-title">Have a Project in Mind? Let's Connect.</h2>
+    <p>I'm always interested in learning, exploring new technologies, and connecting with people who share an interest in engineering and innovation.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:harshanaranganathan@gmail.com">Email Me</a>
+      <a class="btn ghost" href="tel:+917904873383">Call Me</a>
+    </div>
+    <!-- No backend: the form opens the visitor's email app with the message filled in. -->
+    <form id="contactForm" novalidate>
+      <div class="row">
+        <div><label for="name">Name</label><input id="name" required autocomplete="name"><div class="err" data-for="name"></div></div>
+        <div><label for="email">Email</label><input id="email" type="email" required autocomplete="email"><div class="err" data-for="email"></div></div>
+      </div>
+      <div><label for="subject">Subject</label><input id="subject" required><div class="err" data-for="subject"></div></div>
+      <div><label for="message">Message</label><textarea id="message" rows="5" required></textarea><div class="err" data-for="message"></div></div>
+      <div><button class="btn" type="submit">Send via Email App</button></div>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <footer>
+    <div><strong class="logo">HARSHAN</strong><br>Built with curiosity and a passion for technology.<br>© <span id="year"></span> Harshan. All rights reserved.</div>
+    <nav aria-label="Footer"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#certificates">Certificates</a><a href="mailto:harshanaranganathan@gmail.com">Email</a></nav>
+  </footer>
+</main>
+</div>
+
+<button class="top" aria-label="Back to top">↑</button>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="m-box"><button class="m-close" aria-label="Close">×</button><div id="mContent"></div></div>
+</div>
+
+<script>
+// ---------- Project detail content (edit freely) ----------
+const projects = {
+  agro: {
+    title: "AgroGuard AI", sub: "2026 · AI-Inspired Agriculture / Web Development",
+    overview: "A web-based plant health analysis application that uses environmental inputs and reported symptoms to support plant-health assessment.",
+    problem: null, objectives: null,
+    tech: ["Python","HTML","CSS","Flask"],
+    approach: "A Python and Flask backend processes user inputs, and results are shown through a responsive HTML and CSS interface.",
+    features: ["Collects plant name, soil moisture, temperature, humidity and nutrient level","Accepts reported plant symptoms","Presents plant-health assessments and crop-care recommendations","Responsive interface"],
+    challenges: null, future: null
+  },
+  analog: {
+    title: "Analog Damage Detection System", sub: "2026 · Analog Electronics / Safety Engineering",
+    overview: "An analog electronics project designed to detect wire damage and insulation faults, aiming to identify potential electrical hazards early.",
+    problem: "Wire damage and insulation faults can lead to electrical hazards if not found early.",
+    objectives: ["Detect wire damage and insulation faults","Give visual and audible hazard alerts","Keep the prototype approach affordable"],
+    tech: ["IC 555","IC 741","Analog Electronics"],
+    approach: "Analog circuit concept built around an IC 555 timer and an IC 741 operational amplifier.",
+    features: ["Circuit concept for wire damage and insulation fault detection","Visual and audible alerts"],
+    challenges: null, future: null
+  }
+};
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const list = a => '<ul>' + a.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+const block = (h, v, isList) => '<h4>' + h + '</h4>' + (v ? (isList ? list(v) : '<p>' + esc(v) + '</p>') : '<p class="todo">To be added.</p>');
+
+const modal = document.getElementById('modal'), mContent = document.getElementById('mContent');
+let lastBtn;
+document.querySelectorAll('[data-project]').forEach(b => b.addEventListener('click', () => {
+  const p = projects[b.dataset.project]; lastBtn = b;
+  mContent.innerHTML = '<h3 id="mTitle">' + esc(p.title) + '</h3><p class="meta">' + esc(p.sub) + '</p>' +
+    block('Overview', p.overview) + block('Problem Statement', p.problem) + block('Objectives', p.objectives, true) +
+    block('Technologies Used', p.tech.join(' · ')) + block('Design Approach', p.approach) +
+    block('Main Features (Implemented)', p.features, true) + block('Challenges & Learning Outcomes', p.challenges) +
+    block('Future Improvements (Planned)', p.future);
+  modal.classList.add('open'); modal.querySelector('.m-close').focus();
+}));
+function closeModal(){ modal.classList.remove('open'); if(lastBtn) lastBtn.focus(); }
+modal.querySelector('.m-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+// ---------- Mobile menu ----------
+const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
+burger.addEventListener('click', () => { const o = menu.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.setAttribute('aria-expanded', false); }));
+
+// ---------- Reveal on scroll ----------
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ---------- Back to top, year ----------
+const top = document.querySelector('.top');
+addEventListener('scroll', () => top.classList.toggle('show', scrollY > 600), { passive: true });
+top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ---------- Contact form (opens email app; no backend needed) ----------
+const form = document.getElementById('contactForm'), statusEl = document.getElementById('status');
+form.addEventListener('submit', e => {
+  e.preventDefault(); let ok = true;
+  ['name','email','subject','message'].forEach(id => {
+    const el = document.getElementById(id), err = form.querySelector('[data-for="' + id + '"]');
+    let msg = '';
+    if (!el.value.trim()) msg = 'This field is required.';
+    else if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) msg = 'Enter a valid email address.';
+    err.textContent = msg; if (msg) ok = false;
+  });
+  if (!ok) { statusEl.style.color = '#b3261e'; statusEl.textContent = 'Please fix the highlighted fields.'; return; }
+  const body = 'Name: ' + name.value + '\nEmail: ' + email.value + '\n\n' + message.value;
+  location.href = 'mailto:harshanaranganathan@gmail.com?subject=' + encodeURIComponent(subject.value) + '&body=' + encodeURIComponent(body);
+  statusEl.style.color = '#2e7d32'; statusEl.textContent = 'Your email app should open with the message ready to send.';
+});
+
+// Disabled links must not navigate
+document.querySelectorAll('[aria-disabled="true"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>
